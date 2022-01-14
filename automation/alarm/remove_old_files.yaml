@@ -1,0 +1,9 @@
+- alias: remove old snapshots and recordings
+
+  trigger:
+    platform: time
+    at: "00:00:00"
+    
+  action:
+    - service: shell_command.removesnapshots
+    - service: shell_command.removerecordings

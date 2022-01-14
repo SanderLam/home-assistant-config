@@ -1,0 +1,33 @@
+- platform: command_line
+  command: !secret foscam_motion_curl
+  name: "Foscam Motion Detection"
+  value_template: >
+    {% set status = value | regex_findall_index('humanDetectAlarmState>(\d+)<\/humanDetectAlarmState') %}
+    {% if status == "0" %}
+    Disabled
+    {%- elif status == "1" -%}
+    None
+    {%- elif status == "2" -%}
+    Detected
+    {% else %}
+    Not Determined
+    {%- endif -%}
+  scan_interval: 3
+
+- platform: time_date
+  display_options:
+    - "date_time"
+    - "time"
+
+- platform: afvalbeheer
+  wastecollector: GAD
+  resources:
+    - restafval
+    - gft
+    - papier
+    - pmd
+  postcode: !secret postal_code
+  streetnumber: 7
+  dutch: 1
+  alwaysshowday: 1
+  upcomingsensor: 1

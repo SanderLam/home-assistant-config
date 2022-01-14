@@ -1,0 +1,18 @@
+# Ignore folders
+.storage
+.cloud
+blueprints/
+custom_components/
+www/community/
+themes/
+notebooks/
+
+# Ignore files
+ip_bans.yaml
+secrets.yaml
+known_devices.yaml
+home-assistant*
+.HA_VERSION
+zigbee.db
+tts
+scripts/config_huelights_onoff.yaml

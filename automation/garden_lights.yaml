@@ -1,0 +1,19 @@
+- alias: Garden Lights On
+  trigger:
+    platform: state
+    entity_id: sun.sun
+    to: "below_horizon"
+  action:
+    service: light.turn_on
+    target:
+      entity_id: light.zha_garden
+
+- alias: Garden Lights Off
+  trigger:
+    platform: state
+    entity_id: sun.sun
+    to: "above_horizon"
+  action:
+    service: light.turn_off
+    target:
+      entity_id: light.zha_garden

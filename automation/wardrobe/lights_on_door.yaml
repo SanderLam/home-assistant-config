@@ -1,0 +1,18 @@
+- alias: Turn the light in the wardrobe on when the door opens and off when the door closes ór after 5 minutes
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.wardrobe_door_sensor_on_off
+      to: "on"
+
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: light.wardrobe_led_level_light_color_on_off
+
+    - wait_template: "{{ is_state('binary_sensor.wardrobe_door_sensor_on_off', 'off') }}"
+      timeout: "00:05:00"
+
+    - service: light.turn_off
+      target:
+        entity_id: light.wardrobe_led_level_light_color_on_off

@@ -1,0 +1,24 @@
+- alias: "Trigger alarm while armed"
+
+  trigger:
+    - platform: state
+      entity_id: sensor.foscam_motion_detection
+      to: "Detected"
+    - platform: state
+      entity_id:
+        - binary_sensor.kitchen_motion_sensor_occupancy
+        - binary_sensor.living_room_motion_sensor_occupancy
+        - binary_sensor.front_door_sensor_on_off
+        - binary_sensor.garden_door_sensor_on_off
+      to: "on"
+
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: "armed_away"
+
+  action:
+    service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.home_alarm

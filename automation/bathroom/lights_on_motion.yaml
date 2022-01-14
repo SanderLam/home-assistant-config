@@ -1,0 +1,28 @@
+- alias: Turn on the light in the bathroom when motion is detected.
+
+  variables:
+    no_motion_wait: 120
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bathroom_motion_sensor_occupancy
+      to: "on"
+
+  mode: restart
+
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: light.zha_bathroom_leds
+
+    - wait_for_trigger:
+        platform: state
+        entity_id: binary_sensor.bathroom_motion_sensor_occupancy
+        from: "on"
+        to: "off"
+
+    - delay: "{{ no_motion_wait }}"
+
+    - service: light.turn_off
+      target:
+        entity_id: light.zha_bathroom_leds

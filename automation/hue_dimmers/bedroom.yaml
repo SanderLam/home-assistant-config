@@ -1,0 +1,96 @@
+- alias: "Make Hue Dimmer great again"
+
+  variables:
+    command: "{{ trigger.event.data.command }}"
+    args: "{{ trigger.event.data.args }}"
+
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: !secret hue_dimmer_bedroom_device_id
+
+  action:
+    - choose:
+        - conditions: "{{ command == 'off_with_effect' }}"
+          sequence:
+            - service: light.turn_off
+              target:
+                entity_id: light.bedroom_light_level_on_off
+              data:
+                transition: 0.4
+
+        - conditions: "{{ command == 'on' }}"
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.bedroom_light_level_on_off
+              # data:
+              #   brightness: 150
+              #   rgb_color: [255, 166, 5]
+
+        - conditions: "{{ command == 'on_double_press' }}"
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.bedroom_light_level_on_off
+              data:
+                brightness: 150
+                effect: colorloop
+
+        - conditions: "{{ command == 'off_press' }}"
+          sequence:
+            - service: media_player.volume_set
+              entity_id: media_player.office_sander_google_nest_mini
+              data:
+                volume_level: 0.9
+            - service: tts.cloud_say
+              data:
+                entity_id: media_player.office_sander_google_nest_mini
+                message: Heey lievie! Tijd om op te staan en lekker te gaan douchen :)!
+                language: nl-NL
+
+        # Dimmer buttons
+        - conditions:
+            - "{{ command == 'step' }}"
+            - "{{ args == [0, 30, 9] }}"
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.bedroom_light_level_on_off
+              data:
+                brightness_step_pct: 10
+                transition: 1
+
+        - conditions:
+            - "{{ command == 'step' }}"
+            - "{{ args == [0, 63, 9] }}"
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.bedroom_light_level_on_off
+              data:
+                brightness_step_pct: 25
+                transition: 1
+
+        - conditions:
+            - "{{ command == 'step' }}"
+            - "{{ args == [1, 30, 9] }}"
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.bedroom_light_level_on_off
+              data:
+                brightness_step_pct: -10
+                transition: 1
+
+        - conditions:
+            - "{{ command == 'step' }}"
+            - "{{ args == [1, 63, 9] }}"
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.bedroom_light_level_on_off
+              data:
+                brightness_step_pct: -25
+                transition: 1

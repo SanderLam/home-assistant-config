@@ -1,0 +1,19 @@
+- alias: "Trigger alarm while armed"
+
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.front_door_sensor_on_off
+        - binary_sensor.garden_door_sensor_on_off
+      to: "on"
+
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: "armed_home"
+
+  action:
+    service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.home_alarm

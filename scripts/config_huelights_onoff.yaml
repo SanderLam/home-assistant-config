@@ -1,0 +1,39 @@
+alias: Reconfig Hue Lights OnOff
+icon: mdi:lightbulb-multiple-outline
+sequence:
+  - service: python_script.reconfigure_hue_onoff
+    data:
+      ieees:
+        [
+          lamp_bathroom_1_ieee,
+          lamp_bathroom_2_ieee,
+          lamp_bathroom_3_ieee,
+          lamp_bathroom_4_ieee,
+          lamp_bathroom_5_ieee,
+          lamp_bedroom_ieee,
+          lamp_corridor_ieee,
+          lamp_front_door_left_ieee,
+          lamp_front_door_right_ieee,
+          lamp_garden_left_ieee,
+          lamp_garden_right_ieee,
+          lamp_kitchen_dining_table_1_ieee,
+          lamp_kitchen_dining_table_2_ieee,
+          lamp_kitchen_dining_table_3_ieee,
+          lamp_kitchen_island_left_ieee,
+          lamp_kitchen_island_right_ieee,
+          lamp_kitchen_led_strip_ieee,
+          lamp_living_room_back_ieee,
+          lamp_living_room_front_ieee,
+          lamp_living_room_hall_ieee,
+          lamp_office_amber_1_ieee,
+          lamp_office_amber_2_ieee,
+          lamp_office_amber_3_ieee,
+          lamp_office_amber_4_ieee,
+          lamp_office_sander_1_ieee,
+          lamp_office_sander_2_ieee,
+          lamp_toilet_ieee,
+        ]
+  - service: notify.notify
+    data:
+      title: Reconfiguring Lights
+      message: Lights Reconfigured!

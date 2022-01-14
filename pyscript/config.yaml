@@ -1,0 +1,2 @@
+global:
+  alarm_control_panel_code: !secret alarm_control_panel_code

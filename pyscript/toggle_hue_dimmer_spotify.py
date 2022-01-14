@@ -1,0 +1,16 @@
+@service
+def toggle_hue_dimmer_spotify():
+    if media_player.sonos_kitchen == "playing":
+        log.warning("Hue Dimmer turned the music in the kitchen off")
+        service.call("media_player", "media_pause", entity_id="media_player.sonos_kitchen")
+    else:
+        log.warning("Hue Dimmer turned the music in the kitchen on")
+        
+        service.call(
+            "media_player","play_media", 
+            entity_id="media_player.sonos_kitchen",
+            media_content_id="https://open.spotify.com/playlist/2vtP6DyFlbyKD4sMMqI7hy?si=9e2f36ed73214a0c",
+            media_content_type="playlist"
+        )
+        service.call("media_player", "volume_set", entity_id="media_player.sonos_kitchen", volume_level=0.2)
+        service.call("media_player", "shuffle_set", entity_id="media_player.sonos_kitchen", shuffle=True)

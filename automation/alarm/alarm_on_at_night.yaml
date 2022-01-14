@@ -1,0 +1,37 @@
+- alias: Alarm on during the night
+
+  trigger:
+    platform: state
+    entity_id: sensor.time
+    to: "23:00"
+
+  condition:
+    condition: state
+    entity_id: alarm_control_panel.home_alarm
+    state: "disarmed"
+
+  action:
+    service: alarm_control_panel.alarm_arm_home
+    target:
+      entity_id: alarm_control_panel.home_alarm
+    data:
+      code: !secret alarm_control_panel_code
+
+- alias: Alarm off in the morning
+
+  trigger:
+    platform: state
+    entity_id: sensor.time
+    to: "06:00"
+
+  condition:
+    condition: state
+    entity_id: alarm_control_panel.home_alarm
+    state: "armed_home"
+
+  action:
+    service: alarm_control_panel.alarm_disarm
+    target:
+      entity_id: alarm_control_panel.home_alarm
+    data:
+      code: !secret alarm_control_panel_code

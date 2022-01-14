@@ -1,0 +1,22 @@
+- alias: "Wake up light with bedroom light transition"
+
+  trigger:
+    platform: template
+    value_template: "{{ states('sensor.time') == (states.input_datetime.wakeup_time.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+  
+  condition:
+    - condition: state
+      entity_id: input_boolean.wakeup_enabled
+      state: "on"
+  
+  action:
+    - service: light.turn_on
+      entity_id: light.bedroom_light_level_on_off
+      data:
+        brightness: 1
+    - delay: 00:00:01
+    - service: light.turn_on
+      entity_id: light.bedroom_light_level_on_off
+      data:
+        transition: 600
+        brightness: 200

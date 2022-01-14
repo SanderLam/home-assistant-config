@@ -1,0 +1,13 @@
+- id: watch_lights_toggle
+
+  alias: Toggle lights downstairs by pressing button
+
+  trigger:
+    - platform: event
+      event_type: ios.action_fired
+      event_data:
+        actionName: Lampen beneden
+
+  action:
+    - service: light.toggle
+      entity_id: light.zha_lights_downstairs

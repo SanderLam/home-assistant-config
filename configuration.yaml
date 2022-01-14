@@ -1,0 +1,53 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+alarm_control_panel: !include alarm.yaml
+
+automation ui: !include automations.yaml
+automation manual: !include_dir_merge_list automation/
+
+binary_sensor: !include binary_sensor.yaml
+
+camera: !include cameras.yaml
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+group: !include groups.yaml
+
+homeassistant: !include home_assistant.yaml
+
+input_boolean: !include input_boolean.yaml
+
+input_datetime: !include input_datetime.yaml
+
+lovelace: !include lovelace.yaml
+
+media_player: !include media_player_groups.yaml
+
+mobile_app:
+
+plant: !include plants.yaml
+
+pyscript: !include pyscript/config.yaml
+
+python_script:
+
+scene: !include_dir_merge_list scenes
+
+sensor: !include sensors.yaml
+
+shell_command: !include shell_commands.yaml
+
+script: !include_dir_named scripts/
+
+logger:
+  default: warning
+  logs:
+    homeassistant.components.pyscript: debug
+    # homeassistant.components.smartthings: debug
+    homeassistant.components.webhook: debug
+
+spotify:
+  client_id: !secret spotify_client_id
+  client_secret: !secret spotify_client_secret

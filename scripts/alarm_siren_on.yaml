@@ -1,0 +1,13 @@
+alias: Alarm - Flash en Sirene - Aan
+sequence:
+  - data:
+      duration: 3
+      duty_cycle: 2
+      ieee: !secret heiman_siren_ieee
+      intensity: 2
+      level: 1
+      mode: 1
+      strobe: 1
+    service: zha.warning_device_warn
+mode: single
+icon: "mdi:volume-high"

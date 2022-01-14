@@ -1,0 +1,25 @@
+coconut:
+  sensors:
+    moisture: sensor.ble_moisture_plant_palm
+    temperature: sensor.ble_temperature_plant_palm
+    conductivity: sensor.ble_conductivity_plant_palm
+    brightness: sensor.ble_illuminance_plant_palm
+  min_moisture: 15
+  max_moisture: 60
+  min_conductivity: 350
+  max_conductivity: 2000
+  min_temperature: 8
+  max_temperature: 32
+
+dumbo:
+  sensors:
+    moisture: sensor.ble_moisture_plant_elephant
+    temperature: sensor.ble_temperature_plant_elephant
+    conductivity: sensor.ble_conductivity_plant_elephant
+    brightness: sensor.ble_illuminance_plant_elephant
+  min_moisture: 15
+  max_moisture: 60
+  min_conductivity: 350
+  max_conductivity: 2000
+  min_temperature: 10
+  max_temperature: 32

@@ -1,0 +1,5 @@
+- platform: group
+  name: Media Players Downstairs
+  entities:
+    - media_player.sonos_arc
+    - media_player.kitchen_google_nest_mini

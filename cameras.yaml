@@ -1,0 +1,4 @@
+- platform: generic
+  name: "Foscam Camera Stream"
+  still_image_url: !secret foscam_still_image_url
+  stream_source: !secret foscam_rtsp_url

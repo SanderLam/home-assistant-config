@@ -1,0 +1,5 @@
+plants:
+  name: Plants
+  entities:
+    - plant.coconut
+    - plant.dumbo

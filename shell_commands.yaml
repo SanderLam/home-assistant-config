@@ -1,0 +1,2 @@
+removesnapshots: 'find /media/alarm_snapshots/* -mtime +7 -exec rm {} \;'
+removerecordings: 'find /media/alarm_recordings/* -mtime +7 -exec rm {} \;'
