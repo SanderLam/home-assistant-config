@@ -2,19 +2,17 @@
   entities:
     light.zha_lights_downstairs:
       state: "on"
-      brightness: 85
-    light.livingroom_hall_light_level_on_off:
+      brightness: 128
+      color_temp: 410
+    light.zha_hall_front:
       state: "on"
-      brightness: 5
-      
+      brightness: 32
+
 - name: netflix mode
   entities:
     light.zha_lights_downstairs:
       state: "on"
-      brightness: 60
-    light.livingroom_front_light_level_on_off:
+      brightness: 64
+    light.zha_hall_front:
       state: "on"
-      brightness: 10
-    light.livingroom_back_light_level_on_off:
-      state: "on"
-      brightness: 10
+      brightness: 32

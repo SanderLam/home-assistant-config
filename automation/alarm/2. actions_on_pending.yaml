@@ -10,24 +10,27 @@
       to: "pending"
 
   action:
-    - service: camera.snapshot
-      entity_id: camera.foscam_camera_stream
-      data:
-        filename: "{{ snapshot_create_file_path }}"
-
-    - service: notify.notify
-      data:
-        message: "[ALARM PENDING!] at {{ states('sensor.date_time') }}"
-        data:
-          image: "{{ snapshot_access_file_path }}"
-
     - service: camera.record
       entity_id: camera.foscam_camera_stream
       data:
         filename: "/media/alarm_recordings/foscam_{{ now().strftime('%Y%m%d-%H%M%S') }}.mp4"
         duration: 90
         lookback: 30
-
+        
+    - delay:
+        seconds: 3
+        
+    - service: camera.snapshot
+      entity_id: camera.foscam_camera_stream
+      data:
+        filename: "{{ snapshot_create_file_path }}"
+        
+    - service: notify.notify
+      data:
+        message: "[ALARM PENDING!] at {{ states('sensor.date_time') }}"
+        data:
+          image: "{{ snapshot_access_file_path }}"
+    
     # - service: script.alarm_siren_on
     # - delay:
     #     seconds: 5

@@ -1,2 +1,7 @@
 global:
   alarm_control_panel_code: !secret alarm_control_panel_code
+  hue_dimmer_office_sander_device_id: !secret hue_dimmer_office_sander_device_id
+  hue_dimmer_office_amber_device_id: !secret hue_dimmer_office_amber_device_id
+  hue_dimmer_livingroom_device_id: !secret hue_dimmer_livingroom_device_id
+  hue_dimmer_bedroom_device_id: !secret hue_dimmer_bedroom_device_id
+  corridor_light_switch_device_id: !secret corridor_light_switch_device_id

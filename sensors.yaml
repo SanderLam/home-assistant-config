@@ -19,6 +19,11 @@
     - "date_time"
     - "time"
 
+- platform: template
+  sensors:
+    date_dayoftheweek:
+      value_template: "{{ now().strftime('%A') }}"
+
 - platform: afvalbeheer
   wastecollector: GAD
   resources:

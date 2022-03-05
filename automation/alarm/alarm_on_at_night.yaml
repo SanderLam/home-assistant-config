@@ -3,7 +3,7 @@
   trigger:
     platform: state
     entity_id: sensor.time
-    to: "23:00"
+    to: "22:15"
 
   condition:
     condition: state

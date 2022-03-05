@@ -51,3 +51,6 @@ logger:
 spotify:
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
+
+zha:
+  custom_quirks_path: zha_custom_quirks

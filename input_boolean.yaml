@@ -2,3 +2,8 @@ wakeup_enabled:
   name: "Wake-up lights"
   initial: on
   icon: mdi:theme-light-dark
+
+morning_routine:
+  name: "Morning Routine"
+  initial: on
+  icon: mdi:coffee
